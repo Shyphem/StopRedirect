@@ -97,8 +97,35 @@ function handleManualAdd() {
   errorMessage.style.display = 'none';
 }
 
+// Fonction pour gérer le thème
+function initTheme() {
+  const themeToggle = document.getElementById('themeToggle');
+  
+  // Charger le thème sauvegardé
+  chrome.storage.local.get(['darkTheme'], function(result) {
+    if (result.darkTheme) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggle.checked = true;
+    }
+  });
+
+  // Gérer le changement de thème
+  themeToggle.addEventListener('change', function() {
+    if (this.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      chrome.storage.local.set({ darkTheme: true });
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      chrome.storage.local.set({ darkTheme: false });
+    }
+  });
+}
+
 // Initialisation
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialiser le thème
+  initTheme();
+
   // Afficher l'URL actuelle
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     const currentUrl = tabs[0].url;

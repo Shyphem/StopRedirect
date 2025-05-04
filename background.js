@@ -35,7 +35,7 @@ function isSuspiciousUrl(url) {
 function showNotification(domain) {
   chrome.notifications.create({
     type: 'basic',
-    iconUrl: chrome.runtime.getURL('icon48.png'),
+    iconUrl: 'icon16.png',
     title: 'Redirection bloquée',
     message: `La redirection vers ${domain} a été bloquée`,
     priority: 2
