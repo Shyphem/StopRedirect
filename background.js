@@ -5,9 +5,6 @@ const defaultSuspiciousDomains = [
   'porn',
   'xxx',
   'adult',
-  'click',
-  'redirect',
-  'popup'
 ];
 
 // Fonction pour vérifier si une URL est suspecte
